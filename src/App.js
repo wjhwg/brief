@@ -1,4 +1,6 @@
 import React from 'react';
+import {Provider} from 'react-redux';
+import store from './store/index';
 import {Globalstyle} from'./style.js';
 import {GlobalFont} from './statics/iconfont/iconfont'
 import Header from './common/header'
@@ -7,7 +9,9 @@ function App() {
     <div className="App">
       <Globalstyle />
       <GlobalFont />
-      <Header></Header>
+      <Provider store={store}>
+        <Header></Header>
+      </Provider>
     </div>
   );
 }
