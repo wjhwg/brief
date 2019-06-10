@@ -2,7 +2,7 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import {HeaderWrapper, Logo, Nav, NavItem, NavSearch, Addition, Button, SearchWrapper} from './style';
 import {connect} from 'react-redux';
-
+import * as actionCreator from './store/actionCreator';
 const Header = (props) => {
     return (
         <HeaderWrapper>
@@ -40,16 +40,10 @@ const mapStateToProps = (state) => {
 const mapDispathToProps = (dispatch) => {
     return {
         focusSearch(){
-            const action = {
-                type: 'search_focus'
-            }
-            dispatch(action);
+            dispatch(actionCreator.searchFocus());
         },
         blurSearch(){
-            const action = {
-                type: 'search_blur'
-            }
-            dispatch(action);
+            dispatch(actionCreator.searchBlur());
         }
     }
 }
