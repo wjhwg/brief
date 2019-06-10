@@ -34,7 +34,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isFouces: state.isFouces
+        isFouces: state.header.isFouces
     }
 }
 const mapDispathToProps = (dispatch) => {
