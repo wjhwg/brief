@@ -1,13 +1,14 @@
-import * as constants from './constants'
-const defaultState = {
+import * as constants from './constants';
+import { fromJS} from 'immutable'
+const defaultState = fromJS({
     isFouces: false
-};
+});
 export default (state = defaultState, action) => {
     if(action.type === constants.SEARCH_FOCUS){
-        return {isFouces: true};
+        return state.set("focused", true);
     }
     if(action.type === constants.SEARCH_BLUR){
-        return {isFouces: false};
+        return state.set("focused", false);
     }
     return state;
 }

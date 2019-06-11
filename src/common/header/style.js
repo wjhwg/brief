@@ -98,6 +98,45 @@ export const Addition = styled.div`
     top: 0px;
     right: 60px;
 `;
+export const SearchInfo = styled.div`
+    position: absolute;
+    top: 56px;
+    left: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    width: 250px;
+    border-radius: 4px;
+    padding: 20px 20px 10px;
+    border-bottom: 1px solid #f0f0f0;
+`;
+export const SearchInfoHeader = styled.div`
+    overflow: hidden;
+    margin-bottom: 20px;
+`;
+export const SearchInfoTitle = styled.div`
+    float: left;
+    font-size: 14px;
+    color: #969696;
+`;
+export const SearchInfoChange = styled.div`
+    float: right;
+    font-size: 13px;
+    color: #2f2f2f;
+`;
+export const SearchItem = styled.div`
+    overflow: hidden;
+`;
+export const SearchInfoItem = styled.div`
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    padding: 2px 6px;
+    font-size: 12px;
+    color: #787878;
+    float: left;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+`;
 export const Button = styled.div`
     float: left;
     height: 38px;
