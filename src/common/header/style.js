@@ -58,7 +58,7 @@ export const SearchWrapper = styled.div`
     .slide-exit-active{
         width: 160px;
     }
-    .iconfont{
+    .com{
         position: absolute;
         right: 5px;
         bottom: 5px;
@@ -122,6 +122,14 @@ export const SearchInfoChange = styled.div`
     float: right;
     font-size: 13px;
     color: #2f2f2f;
+    .spin{
+        display: block;
+        float: left;
+        margin: -2px 3px 0 0;
+        transition: all .2s ease-in;
+        transform: rotate(180deg);
+        transform-origin: center center;
+    }
 `;
 export const SearchItem = styled.div`
     overflow: hidden;

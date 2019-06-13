@@ -45,7 +45,10 @@ class Header extends Component{
                 <SearchInfo onMouseEnter={handlerMouseIn} onMouseLeave={handlerMouseOut}>
                     <SearchInfoHeader>
                         <SearchInfoTitle>热门搜索</SearchInfoTitle>
-                        <SearchInfoChange onClick={() => handlerChange(page, totalPage)}>换一批</SearchInfoChange>
+                        <SearchInfoChange onClick={() => handlerChange(page, totalPage, this.spinIcon)}>
+                            <i className='iconfont spin' ref={(spin) => {this.spinIcon = spin}}>&#xe88c;</i>
+                            换一批
+                        </SearchInfoChange>
                     </SearchInfoHeader>
                     <SearchItem>
                         {pageList}
@@ -72,7 +75,7 @@ class Header extends Component{
                                 className={isFouces === true ? 'focused' : ''}
                             ></NavSearch>
                         </CSSTransition>
-                        <i className={isFouces === true ? 'focused iconfont' : 'iconfont'}>&#xe613;</i>
+                        <i className={isFouces === true ? 'focused iconfont com ' : 'iconfont com'}>&#xe613;</i>
                         {this.getListArea(isFouces)}
                     </SearchWrapper>
                 </Nav>
@@ -141,7 +144,14 @@ const mapDispathToProps = (dispatch) => {
         handlerMouseOut(){
             dispatch(actionCreator.mouseOut());
         },
-        handlerChange(page, totalPage){
+        handlerChange(page, totalPage, spin){
+            let origin = spin.style.transform.replace(/[^0-9]/ig, '');
+            if(origin){
+                origin = parseInt(origin, 10);
+            }else {
+                origin = 0;
+            };
+            spin.style.transform = 'rotate(' + origin + 360 + 'deg)';
             if(page < totalPage){
                 dispatch(actionCreator.changePage(page + 1));
             }else {
