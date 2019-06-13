@@ -32,18 +32,23 @@ import * as actionCreator from './store/actionCreator';
 // }
 class Header extends Component{
     getListArea = (show) => {
-        const {list} = this.props;
-        if(show){
+        const {list, page, handlerMouseIn, handlerMouseOut, mouseIn, handlerChange, totalPage} = this.props;
+        const newList = list.toJS();
+        const pageList = [];
+        if(newList.length){
+            for(let i = (page - 1) * 10; i < page * 10; i ++){
+                pageList.push(<SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>);
+            }
+        }
+        if(show || mouseIn){
             return (
-                <SearchInfo>
+                <SearchInfo onMouseEnter={handlerMouseIn} onMouseLeave={handlerMouseOut}>
                     <SearchInfoHeader>
                         <SearchInfoTitle>热门搜索</SearchInfoTitle>
-                        <SearchInfoChange>换一批</SearchInfoChange>
+                        <SearchInfoChange onClick={() => handlerChange(page, totalPage)}>换一批</SearchInfoChange>
                     </SearchInfoHeader>
                     <SearchItem>
-                        { list.map( (item) => {
-                           return  <SearchInfoItem key={item}>{item}</SearchInfoItem>
-                        })}
+                        {pageList}
                     </SearchItem>
                 </SearchInfo>
             )
@@ -115,7 +120,10 @@ class Header extends Component{
 const mapStateToProps = (state) => {
     return {
         isFouces: state.header.get("focused"),
-        list: state.header.get("list")
+        list: state.header.get("list"),
+        page: state.header.get("page"),
+        mouseIn: state.header.get("mouseIn"),
+        totalPage: state.header.get("totalPage")
     }
 }
 const mapDispathToProps = (dispatch) => {
@@ -126,6 +134,19 @@ const mapDispathToProps = (dispatch) => {
         },
         blurSearch(){
             dispatch(actionCreator.searchBlur());
+        },
+        handlerMouseIn(){
+            dispatch(actionCreator.mouseIn());
+        },
+        handlerMouseOut(){
+            dispatch(actionCreator.mouseOut());
+        },
+        handlerChange(page, totalPage){
+            if(page < totalPage){
+                dispatch(actionCreator.changePage(page + 1));
+            }else {
+                dispatch(actionCreator.changePage(1));
+            }
         }
     }
 }

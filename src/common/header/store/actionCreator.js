@@ -7,9 +7,20 @@ export const searchFocus = () => ({
 export const searchBlur = () => ({
     type: constants.SEARCH_BLUR
 });
+export const mouseIn = () => ({
+    type: constants.MOUSE_ENTER
+});
+export const mouseOut = () => ({
+    type: constants.MOUSE_OUT
+});
+export const changePage = (data) => ({
+    type: constants.CHANGE_PAGE,
+    data
+});
 const changeList = (data) => ({
     type: constants.CHANGE_LIST,
-    data: fromJS(data)
+    data: fromJS(data),
+    totalPage: Math.ceil(data.length / 10)
 })
 export const getList = () => {
     return (dispatch) => {
