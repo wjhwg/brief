@@ -60,7 +60,7 @@ class Header extends Component{
         }
     }
     render() {
-        const {focusSearch, blurSearch, isFouces} = this.props;
+        const {focusSearch, blurSearch, isFouces, list} = this.props;
         return (
             <HeaderWrapper>
                 <Logo/>
@@ -71,7 +71,7 @@ class Header extends Component{
                     <NavItem className='right'><i className='iconfont'>&#xe636;</i></NavItem>
                     <SearchWrapper>
                         <CSSTransition timeout={300} classNames='slide' in={isFouces}>
-                            <NavSearch onFocus={focusSearch} onBlur={blurSearch}
+                            <NavSearch onFocus={() => {focusSearch(list)}} onBlur={blurSearch}
                                 className={isFouces === true ? 'focused' : ''}
                             ></NavSearch>
                         </CSSTransition>
@@ -131,9 +131,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispathToProps = (dispatch) => {
     return {
-        focusSearch(){
+        focusSearch(list){
+            (list.size === 0) && dispatch(actionCreator.getList());
             dispatch(actionCreator.searchFocus());
-            dispatch(actionCreator.getList());
         },
         blurSearch(){
             dispatch(actionCreator.searchBlur());
